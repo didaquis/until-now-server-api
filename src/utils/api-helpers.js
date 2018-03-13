@@ -20,4 +20,18 @@ function fail(error) {
 	return res;
 }
 
-module.exports = { success, fail };
+/**
+ * Validate if data is not empty or undefined
+ * 
+ * @param {string|number} data 
+ * @throws Will throw an error if the argument is null, empty or undefined.
+ */
+function validate(data) {
+    for (const prop in data) {
+        const value = data[prop];
+
+        if (typeof value === 'undefined' || !value.trim().length) throw Error(`${prop} cannot be undefined or empty`);
+    }
+}
+
+module.exports = { success, fail, validate };

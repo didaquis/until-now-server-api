@@ -6,7 +6,7 @@ const { success, fail } = require('../../utils/api-helpers');
 
 module.exports = (req, res) => {
 
-	User.find({}).sort({ name: 1})
+	User.findOne({}, {collections: 1}).sort({ name: 1})
 	.then(results =>{
 		res.json(success(results));
 	})

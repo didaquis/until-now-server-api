@@ -1,17 +1,14 @@
-const { Router } = require('express');
-const router = Router();
-
-const { Item } = require('../../models/itemModel');
+const logic = require('../../logic');
 const { success, fail } = require('../../utils/api-helpers');
 
 module.exports = (req, res) => {
 
-	Item.find({}).sort({ name: 1})
-	.then(results =>{
-		res.json(success(results));
-	})
-	.catch(err => {
-		return res.json(fail(err));
-	});
+	logic.listItems()
+		.then(results => {
+			res.json(success(results));
+		})
+		.catch(err => {
+			return res.json(fail(err.message));
+		});
 
 };

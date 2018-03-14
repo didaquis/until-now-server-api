@@ -1,0 +1,14 @@
+PORT=5000
+# Localhost Data:
+#MONGO_HOST=localhost
+#MONGO_PORT=27017
+#MONGO_DB=users-api-mongoose
+#MONGO_USER=
+#MONGO_PASS=
+
+# Database connection:
+#MONGO_HOST=ds261949.mlab.com
+#MONGO_PORT=61138
+#MONGO_DB=your_database
+#MONGO_USER=your-user
+#MONGO_PASS=your-password

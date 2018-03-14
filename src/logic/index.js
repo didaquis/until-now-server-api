@@ -12,15 +12,20 @@ module.exports = {
 				return Collection.find({}).sort({ name: 1 });
 			})
 			.then(results => {
+				if (!results) throw Error('No collections available');
+
 				return results;
 			});
 	},
+
 
 	retrieveCollection(id) {
 		return Promise.resolve()
 			.then(() => {
 				return Collection.findOne({ '_id': id });
 			}).then(results => {
+				if (!results) throw Error('Collection does not exist');
+
 				return results;
 			});
 	},
@@ -32,6 +37,8 @@ module.exports = {
 				return Item.find({}).sort({ name: 1 });
 			})
 			.then(results => {
+				if (!results) throw Error('No items available');
+
 				return results;
 			});
 	},
@@ -43,6 +50,8 @@ module.exports = {
 				return Item.findOne({ '_id': id });
 			})
 			.then(results => {
+				if (!results) throw Error('Item does not exist');
+
 				return results;
 			});
 	},
@@ -56,7 +65,7 @@ module.exports = {
 				return User.findOne({ 'username': username, 'password': password }, { password: 0 });
 			})
 			.then(user => {
-				if (!user) throw Error('user does not exist');
+				if (!user) throw Error('User does not exist');
 
 				return user;
 			});

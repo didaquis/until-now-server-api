@@ -18,13 +18,40 @@ describe('Testing server API', () => {
 	// Tests
 	it('should list collections', (done) => {
 		logic.listCollections()
-			.then(collections => {
-				assert(collections && collections instanceof Array, 'results shold be an Array');
-
+			.then(result => {
+				assert(result && result instanceof Array, 'results should be an Array');
 				done();
 			}).catch(done);
-
 	});
+
+	it('should list items', (done) => {
+		logic.listItems()
+			.then(result => {
+				assert(result && result instanceof Array, 'results should be an Array');
+				done();
+			}).catch(done);
+	});
+
+
+	// it('should return error', (done) => {
+	// 	logic.retrieveCollection('ffffffffffffffffffffffff')
+	// 		.then(result => {
+	// 			//assert.throw(iThrowError(), Error, "Error thrown");
+	// 			//assert.equal(result.status === 'ERROR', 'results should be ERROR');
+	// 			//assert.notEqual(result === 'OK');
+	// 			done();
+	// 		}).catch(done);
+	// });
+
+
+	// it('should return error', (done) => {
+	// 	logic.retrieveItem('ffffffffffffffffffffffff')
+	// 		.then(result => {
+	// 			//assert.equal(result.status === 'ERROR', 'results should be ERROR');
+	// 			done();
+	// 		}).catch(done);
+	// });
+
 
 	// Cerramos la conexión a la base de datos
 	after(function (done) {

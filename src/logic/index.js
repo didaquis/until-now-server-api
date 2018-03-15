@@ -83,6 +83,19 @@ module.exports = {
 	},
 
 
+	deleteCollection(_id) {
+		return Promise.resolve()
+			.then(() => {
+				return Collection.findOneAndRemove({ _id })
+			})
+			.then(results => {
+				if (!results) throw Error('Collection does not exist');
+
+				return results;
+			});
+	},
+
+
 	retrieveUser(username, password) {
 		return Promise.resolve()
 			.then(() => {

@@ -8,7 +8,10 @@ const ItemSchema = new Schema({
 	refNumber		: String,
 	notes			: String,
 	url				: String, 
-	id_collection	: String
+	id_collection		: {
+		type: mongoose.SchemaTypes.ObjectId,
+		ref: 'Collection'
+	}
 });
 
 module.exports.Item = mongoose.model('Item', ItemSchema);

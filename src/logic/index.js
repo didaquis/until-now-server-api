@@ -43,10 +43,11 @@ module.exports = {
 			});
 	},
 
+
 	listItemsInCollection(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Item.find({'_id': id}).sort({ name: 1 });
+				return Item.find({'id_collection': id}).sort({ name: 1 });
 			})
 			.then(results => {
 				if (!results) throw Error('No items available');
@@ -60,6 +61,19 @@ module.exports = {
 		return Promise.resolve()
 			.then(() => {
 				return Item.findOne({ '_id': id });
+			})
+			.then(results => {
+				if (!results) throw Error('Item does not exist');
+
+				return results;
+			});
+	},
+
+
+	deleteItem(id) {
+		return Promise.resolve()
+			.then(() => {
+				return Item.findByIdAndRemove(id);
 			})
 			.then(results => {
 				if (!results) throw Error('Item does not exist');

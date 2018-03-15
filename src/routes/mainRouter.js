@@ -10,6 +10,7 @@ const handlerRetrieveCollection = require('./handlersCollections/retrieveCollect
 
 const handlerListItems = require('./handlersItems/listItems');
 const handlerRetrieveItem = require('./handlersItems/retrieveItem');
+const handlerDeleteItem = require('./handlersItems/deleteItem');
 const handlerListItemsInCollection = require('./handlersItems/listItemsInCollection');
 
 const mainRouter = Router();
@@ -23,6 +24,7 @@ mainRouter.get('/api/collection/:id', jsonBodyParser, handlerRetrieveCollection)
 
 mainRouter.get('/api/items', jsonBodyParser, handlerListItems);
 mainRouter.get('/api/item/:id', jsonBodyParser, handlerRetrieveItem);
+mainRouter.delete('/api/item/:id', jsonBodyParser, handlerDeleteItem);
 mainRouter.get('/api/items/:id', jsonBodyParser, handlerListItemsInCollection);
 
 module.exports = mainRouter;

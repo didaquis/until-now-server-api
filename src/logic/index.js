@@ -43,6 +43,18 @@ module.exports = {
 			});
 	},
 
+	listItemsInCollection(id) {
+		return Promise.resolve()
+			.then(() => {
+				return Item.find({'_id': id}).sort({ name: 1 });
+			})
+			.then(results => {
+				if (!results) throw Error('No items available');
+
+				return results;
+			});
+	},
+
 
 	retrieveItem(id) {
 		return Promise.resolve()

@@ -43,10 +43,11 @@ module.exports = {
 			});
 	},
 
+
 	listItemsInCollection(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Item.find({'_id': id}).sort({ name: 1 });
+				return Item.find({'id_collection': id}).sort({ name: 1 });
 			})
 			.then(results => {
 				if (!results) throw Error('No items available');
@@ -68,6 +69,45 @@ module.exports = {
 			});
 	},
 
+
+	deleteItem(id) {
+		return Promise.resolve()
+			.then(() => {
+				return Item.findByIdAndRemove(id);
+			})
+			.then(results => {
+				if (!results) throw Error('Item does not exist');
+
+				return results;
+			});
+	},
+
+
+	deleteItemsFromCollection(id){
+		return Promise.resolve()
+			.then(() => {
+				return Item.remove({ 'id_collection': id })
+			})
+			.then(results => {
+				if (!results) throw Error('Item does not exist');
+
+				return results;
+			});
+	},
+
+	deleteCollection(_id) {
+		return Promise.resolve()
+			.then(() => {
+				return this.deleteItemsFromCollection(_id);
+			}).then(() => {
+				return Collection.findByIdAndRemove({ _id });
+			})
+			.then(results => {
+				if (!results) throw Error('Collection does not exist');
+
+				return results;
+			});
+	},
 
 	retrieveUser(username, password) {
 		return Promise.resolve()

@@ -83,10 +83,24 @@ module.exports = {
 	},
 
 
+	deleteItemsFromCollection(id){
+		return Promise.resolve()
+			.then(() => {
+				return Item.remove({ 'id_collection': id })
+			})
+			.then(results => {
+				if (!results) throw Error('Item does not exist');
+
+				return results;
+			});
+	},
+
 	deleteCollection(_id) {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.findOneAndRemove({ _id })
+				return this.deleteItemsFromCollection(_id);
+			}).then(() => {
+				return Collection.findByIdAndRemove({ _id });
 			})
 			.then(results => {
 				if (!results) throw Error('Collection does not exist');
@@ -94,7 +108,6 @@ module.exports = {
 				return results;
 			});
 	},
-
 
 	retrieveUser(username, password) {
 		return Promise.resolve()

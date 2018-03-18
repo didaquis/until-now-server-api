@@ -7,7 +7,6 @@ const ItemSchema = new Schema({
 	dateEnd      	: Date,
 	refNumber		: String,
 	notes			: String,
-	url				: String, 
 	id_collection		: {
 		type: mongoose.SchemaTypes.ObjectId,
 		ref: 'Collection'

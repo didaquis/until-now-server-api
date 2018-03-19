@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 const logic = require('../src/logic');
 const assert = require('assert');
+const expect = require('chai').expect;
 
 describe('Testing server API', () => {
 
-	// Abrimos la conexión con MongoDB
+	// Abrimos la conexión con MongoDB (al finalizar los test la cerraremos y borraremos la base de datos)
 	before(function (done) {
 		mongoose.connect('mongodb://localhost/untilnow_test');
 		const db = mongoose.connection;
@@ -15,7 +16,6 @@ describe('Testing server API', () => {
 		});
 	});
 
-	// Tests
 	it('should list collections', (done) => {
 		logic.listCollections()
 			.then(result => {
@@ -28,6 +28,16 @@ describe('Testing server API', () => {
 		logic.listItems()
 			.then(result => {
 				assert(result && result instanceof Array, 'results should be an Array');
+				done();
+			}).catch(done);
+	});
+
+
+	it('should create collection', (done) => {
+		logic.createCollection('dummyData', '5aa6bb9e341a690ff909faee')
+			.then(result => {
+				console.log('result:' + result);
+				expect(mongoose.Types.ObjectId.isValid(result)).to.be.true;
 				done();
 			}).catch(done);
 	});
@@ -53,7 +63,7 @@ describe('Testing server API', () => {
 	// });
 
 
-	// Cerramos la conexión a la base de datos
+	// Cerramos la conexión a la base de datos y borramos la base de datos!
 	after(function (done) {
 		mongoose.connection.db.dropDatabase(function () {
 			mongoose.connection.close(done);

@@ -9,7 +9,7 @@ module.exports = {
 	listCollections() {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.find({}).sort({ name: 1 });
+				return Collection.find({}, { __v: 0}).sort({ name: 1 });
 			})
 			.then(results => {
 				if (!results) throw Error('No collections available');
@@ -22,7 +22,7 @@ module.exports = {
 	retrieveCollection(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.findOne({ '_id': id });
+				return Collection.findOne({ '_id': id }, { __v: 0});
 			}).then(results => {
 				if (!results) throw Error('Collection does not exist');
 
@@ -57,7 +57,7 @@ module.exports = {
 	listItems() {
 		return Promise.resolve()
 			.then(() => {
-				return Item.find({}).sort({ name: 1 });
+				return Item.find({}, { __v: 0}).sort({ name: 1 });
 			})
 			.then(results => {
 				if (!results) throw Error('No items available');
@@ -65,12 +65,11 @@ module.exports = {
 				return results;
 			});
 	},
-
 
 	listItemsInCollection(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Item.find({'id_collection': id}).sort({ name: 1 });
+				return Item.find({'id_collection': id}, { __v: 0}).sort({ name: 1 });
 			})
 			.then(results => {
 				if (!results) throw Error('No items available');
@@ -79,11 +78,10 @@ module.exports = {
 			});
 	},
 
-
 	retrieveItem(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Item.findOne({ '_id': id });
+				return Item.findOne({ '_id': id }, { __v: 0});
 			})
 			.then(results => {
 				if (!results) throw Error('Item does not exist');
@@ -123,7 +121,7 @@ module.exports = {
 			.then(() => {
 				validate({ username, password });
 
-				return User.findOne({ 'username': username, 'password': password }, { password: 0 });
+				return User.findOne({ 'username': username, 'password': password }, { password: 0, __v: 0 });
 			})
 			.then(user => {
 				if (!user) throw Error('User does not exist');

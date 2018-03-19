@@ -30,6 +30,40 @@ module.exports = {
 			});
 	},
 
+	setToZeroItemsCountInCollection(id) {
+		return Promise.resolve()
+			.then(()=> {
+				return Collection.findByIdAndUpdate({'_id': id}, {$set : {'itemsCount' : 0}}, {new: true});
+			}).then(results => {
+				if(!results) throw Error('Something went wrong setting itemsCount');
+
+				return results;
+			});
+	},
+
+	incrementItemsCountInCollection(id) {
+		return Promise.resolve()
+			.then(()=> {
+				return Collection.findByIdAndUpdate({'_id': id}, {$inc : {'itemsCount' : 1}}, {new: true});
+			}).then(results => {
+				if(!results) throw Error('Something went wrong incrementing itemsCount');
+
+				return results;
+			});
+	},
+
+
+	decrementItemsCountInCollection(id) {
+		return Promise.resolve()
+			.then(()=> {
+				return Collection.findByIdAndUpdate({'_id': id}, {$inc : {'itemsCount' : -1}}, {new: true});
+			}).then(results => {
+				if(!results) throw Error('Something went wrong incrementing itemsCount');
+
+				return results;
+			});
+	},
+
 
 	deleteCollection(_id) {
 		return Promise.resolve()
@@ -95,38 +129,41 @@ module.exports = {
 
 
 	deleteItem(id) {
+		let idOfItem = '';
 		return Promise.resolve()
 			.then(() => {
 				return Item.findByIdAndRemove(id);
 			})
 			.then(results => {
 				if (!results) throw Error('Item does not exist');
-
-				return results;
-			});
+				idOfItem = results._id;
+				return this.decrementItemsCountInCollection(results.id_collection);
+			}).then( () => idOfItem);
 	},
 
 
 	deleteItemsFromCollection(id){
 		return Promise.resolve()
 			.then(() => {
-				return Item.remove({ 'id_collection': id })
+				return Item.remove({ 'id_collection': id });
 			})
 			.then(results => {
-				if (!results) throw Error('Item does not exist');
-
-				return results;
-			});
+				if (!results) throw Error('Something went wrong');
+				return this.setToZeroItemsCountInCollection(id)
+			}).then( (res) => res);
 	},
 
 
 	createItem(name, dateStart, dateEnd, refNumber, notes, id_collection){
+		let idOfItem = '';
 		return Promise.resolve()
 			.then(() => {
 				return Item.create({ name, dateStart, dateEnd, refNumber, notes, id_collection });
-			}).then(res => {
-				return res._id;
-			});
+			}).then(results => {
+				if (!results) throw Error('Item was not created');
+				idOfItem = results._id;
+				return this.incrementItemsCountInCollection(results.id_collection);
+			}).then( () => idOfItem);
 	},
 
 

@@ -63,6 +63,22 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
+	it('should increment itemsCounts in collection', (done) => {
+		logic.incrementItemsCountInCollection(idOfCollection)
+			.then(result => {
+				assert(result.itemsCount > 0, 'results should be greather than zero');
+				done();
+			}).catch(done);
+	});
+
+	it('should decrement itemsCounts in collection', (done) => {
+		logic.decrementItemsCountInCollection(idOfCollection)
+			.then(result => {
+				assert(result.itemsCount == 0, 'results should be zero');
+				done();
+			}).catch(done);
+	});
+
 	it('should delete a collection', (done) => {
 		logic.deleteCollection(idOfCollection)
 			.then(result => {
@@ -74,7 +90,7 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
-	// Cerramos la conexión a la base de datos y borramos la base de datos!
+	//Cerramos la conexión a la base de datos y borramos la base de datos!
 	after(function (done) {
 		mongoose.connection.db.dropDatabase(function () {
 			mongoose.connection.close(done);

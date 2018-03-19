@@ -54,6 +54,7 @@ module.exports = {
 			});
 	},
 
+
 	listItems() {
 		return Promise.resolve()
 			.then(() => {
@@ -66,6 +67,7 @@ module.exports = {
 			});
 	},
 
+
 	listItemsInCollection(id) {
 		return Promise.resolve()
 			.then(() => {
@@ -77,6 +79,7 @@ module.exports = {
 				return results;
 			});
 	},
+
 
 	retrieveItem(id) {
 		return Promise.resolve()
@@ -115,6 +118,17 @@ module.exports = {
 				return results;
 			});
 	},
+
+
+	createItem(name, dateStart, dateEnd, refNumber, notes, id_collection){
+		return Promise.resolve()
+			.then(() => {
+				return Item.create({ name, dateStart, dateEnd, refNumber, notes, id_collection });
+			}).then(res => {
+				return res._id;
+			});
+	},
+
 
 	retrieveUser(username, password) {
 		return Promise.resolve()

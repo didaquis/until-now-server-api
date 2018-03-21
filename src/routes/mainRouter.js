@@ -1,6 +1,9 @@
 const { Router } = require('express');
 const bodyParser = require('body-parser');
 
+// utils
+const handlerPing = require('./handlersUtils/ping');
+
 // users
 const handlerRetrieveUser = require('./handlersUsers/retrieveUser');
 
@@ -19,6 +22,9 @@ const handlerCreateItem = require('./handlersItems/createItem');
 
 const mainRouter = Router();
 const jsonBodyParser = bodyParser.json();
+
+// util
+mainRouter.get('/api/ping', jsonBodyParser, handlerPing);
 
 // users
 mainRouter.post('/api/user', jsonBodyParser, handlerRetrieveUser);

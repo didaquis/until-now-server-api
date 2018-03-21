@@ -6,6 +6,13 @@ const { validate } = require('../utils/api-helpers');
 
 module.exports = {
 
+	ping(){
+		return Promise.resolve()
+			.then(() => {
+				return 'ping';
+			});
+	},
+
 	listCollections() {
 		return Promise.resolve()
 			.then(() => {

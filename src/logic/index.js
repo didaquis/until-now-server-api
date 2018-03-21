@@ -9,7 +9,7 @@ module.exports = {
 	listCollections() {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.find({}, { __v: 0}).sort({ name: 1 });
+				return Collection.find( {}, { '__v': 0 } ).sort( { 'name': 1 } );
 			})
 			.then(results => {
 				if (!results) throw Error('No collections available');
@@ -22,7 +22,7 @@ module.exports = {
 	retrieveCollection(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.findOne({ '_id': id }, { __v: 0});
+				return Collection.findOne( { '_id': id }, { '__v': 0 } );
 			}).then(results => {
 				if (!results) throw Error('Collection does not exist');
 

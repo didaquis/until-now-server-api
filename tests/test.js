@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const logic = require('../src/logic');
 const assert = require('assert');
 const expect = require('chai').expect;
@@ -7,6 +7,8 @@ const assertChai = require('chai').assert;
 describe('Testing server API', () => {
 
 	let idOfCollection = '';
+	
+	const idOfUser = '5aa6bb9e341a690ff909faee';
 
 	// Abrimos la conexión con MongoDB (al finalizar los test la cerraremos y borraremos la base de datos)
 	before(function (done) {
@@ -20,7 +22,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should create collection', (done) => {
-		logic.createCollection('dummyData', '5aa6bb9e341a690ff909faee')
+		logic.createCollection('dummyData', idOfUser)
 			.then(result => {
 				expect(mongoose.Types.ObjectId.isValid(result)).to.be.true;
 				idOfCollection = result.toString();

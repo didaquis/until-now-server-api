@@ -2,14 +2,14 @@ const { Collection } = require('../models/collectionModel');
 const { Item } = require('../models/itemModel');
 const { User } = require('../models/userModel');
 
-const { success, fail, validate } = require('../utils/api-helpers');
+const { validate } = require('../utils/api-helpers');
 
 module.exports = {
 
 	listCollections() {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.find({}, { __v: 0}).sort({ name: 1 });
+				return Collection.find( {}, { '__v': 0 } ).sort( { 'name': 1 } );
 			})
 			.then(results => {
 				if (!results) throw Error('No collections available');
@@ -22,7 +22,7 @@ module.exports = {
 	retrieveCollection(id) {
 		return Promise.resolve()
 			.then(() => {
-				return Collection.findOne({ '_id': id }, { __v: 0});
+				return Collection.findOne( { '_id': id }, { '__v': 0 } );
 			}).then(results => {
 				if (!results) throw Error('Collection does not exist');
 
@@ -82,6 +82,11 @@ module.exports = {
 	createCollection(name, id_user){
 		return Promise.resolve()
 			.then(() => {
+				validate({ name, id_user });
+
+				name = name.trim();
+				id_user = id_user.trim();
+
 				return Collection.create({ name, id_user });
 			}).then(res => {
 				return res._id;
@@ -149,7 +154,7 @@ module.exports = {
 			})
 			.then(results => {
 				if (!results) throw Error('Something went wrong');
-				return this.setToZeroItemsCountInCollection(id)
+				return this.setToZeroItemsCountInCollection(id);
 			}).then( (res) => res);
 	},
 
@@ -158,6 +163,15 @@ module.exports = {
 		let idOfItem = '';
 		return Promise.resolve()
 			.then(() => {
+				validate({ name, dateStart, dateEnd, id_collection });
+
+				name = name.trim();
+				dateStart = dateStart.trim();
+				dateEnd = dateEnd.trim();
+				refNumber = refNumber.trim();
+				notes = notes.trim();
+				id_collection = id_collection.trim();
+
 				return Item.create({ name, dateStart, dateEnd, refNumber, notes, id_collection });
 			}).then(results => {
 				if (!results) throw Error('Item was not created');

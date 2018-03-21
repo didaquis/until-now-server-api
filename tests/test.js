@@ -21,6 +21,16 @@ describe('Testing server API', () => {
 		});
 	});
 
+
+	it('should send and receive ping', (done) => {
+		logic.ping()
+			.then(result => {
+				expect(result).to.equal('ping');
+				done();
+			}).catch(done);
+	});
+
+
 	it('should create collection', (done) => {
 		logic.createCollection('dummyData', idOfUser)
 			.then(result => {

@@ -29,11 +29,10 @@ function fail(error) {
  * @throws Will throw an error if the argument is null, empty or undefined.
  */
 function validate(data) {
-    for (const prop in data) {
-        const value = data[prop];
-
-        if (typeof value === 'undefined' || !value.trim().length) throw Error(`${prop} cannot be undefined or empty`);
-    }
+	for (const prop in data) {
+		const value = data[prop];
+		if (typeof value === 'undefined' || !value.trim().length) throw Error(`${prop} cannot be undefined or empty`);
+	}
 }
 
 

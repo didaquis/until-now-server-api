@@ -1,4 +1,4 @@
-const { Collection } = require('../models/collectionModel');
+const { Collection } = require('../../models/collectionModel');
 
 module.exports = () => {
 	return Promise.resolve()

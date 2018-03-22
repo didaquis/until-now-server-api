@@ -1,7 +1,7 @@
-const { Item } = require('../models/itemModel');
+const { Item } = require('../../models/itemModel');
 
-const incrementItemsCountInCollection = require('./incrementItemsCountInCollection');
-const { validate } = require('../utils/api-helpers');
+const incrementItemsCountInCollection = require('../collections/incrementItemsCountInCollection');
+const { validate } = require('../../utils/api-helpers');
 
 module.exports = (name, dateStart, dateEnd, refNumber, notes, id_collection) => {
 	let idOfItem = '';

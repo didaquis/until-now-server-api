@@ -1,6 +1,6 @@
-const { Collection } = require('../models/collectionModel');
+const { Collection } = require('../../models/collectionModel');
 
-const deleteItemsFromCollection = require('./deleteItemsFromCollection');
+const deleteItemsFromCollection = require('../items/deleteItemsFromCollection');
 
 module.exports = (_id) => {
 	return Promise.resolve()

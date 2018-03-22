@@ -1,22 +1,22 @@
 // utils logic
-const ping = require('./ping');
+const ping = require('./utils/ping');
 
 // collection logic
-const listCollections = require('./listCollections');
-const retrieveCollection = require('./retrieveCollection');
-const setToZeroItemsCountInCollection = require('./setToZeroItemsCountInCollection');
-const incrementItemsCountInCollection = require('./incrementItemsCountInCollection');
-const decrementItemsCountInCollection = require('./decrementItemsCountInCollection');
-const deleteCollection = require('./deleteCollection');
-const createCollection = require('./createCollection');
+const listCollections = require('./collections/listCollections');
+const retrieveCollection = require('./collections/retrieveCollection');
+const setToZeroItemsCountInCollection = require('./collections/setToZeroItemsCountInCollection');
+const incrementItemsCountInCollection = require('./collections/incrementItemsCountInCollection');
+const decrementItemsCountInCollection = require('./collections/decrementItemsCountInCollection');
+const deleteCollection = require('./collections/deleteCollection');
+const createCollection = require('./collections/createCollection');
 
 // item logic
-const listItems = require('./listItems');
-const listItemsInCollection = require('./listItemsInCollection');
-const retrieveItem = require('./retrieveItem');
-const deleteItem = require('./deleteItem');
-const deleteItemsFromCollection = require('./deleteItemsFromCollection');
-const createItem = require('./createItem');
+const listItems = require('./items/listItems');
+const listItemsInCollection = require('./items/listItemsInCollection');
+const retrieveItem = require('./items/retrieveItem');
+const deleteItem = require('./items/deleteItem');
+const deleteItemsFromCollection = require('./items/deleteItemsFromCollection');
+const createItem = require('./items/createItem');
 
 // user logic
 const retrieveUser = require('./user/retrieveUser');

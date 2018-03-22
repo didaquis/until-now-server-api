@@ -1,6 +1,6 @@
-const { Item } = require('../models/itemModel');
+const { Item } = require('../../models/itemModel');
 
-const setToZeroItemsCountInCollection = require('./setToZeroItemsCountInCollection');
+const setToZeroItemsCountInCollection = require('../collections/setToZeroItemsCountInCollection');
 
 module.exports = (id) => {
 	return Promise.resolve()

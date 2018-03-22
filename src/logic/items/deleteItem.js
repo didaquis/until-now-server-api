@@ -1,6 +1,6 @@
-const { Item } = require('../models/itemModel');
+const { Item } = require('../../models/itemModel');
 
-const decrementItemsCountInCollection = require('./decrementItemsCountInCollection');
+const decrementItemsCountInCollection = require('../collections/decrementItemsCountInCollection');
 
 module.exports = (id) => {
 	let idOfItem = '';

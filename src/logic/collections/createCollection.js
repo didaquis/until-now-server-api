@@ -1,6 +1,6 @@
-const { Collection } = require('../models/collectionModel');
+const { Collection } = require('../../models/collectionModel');
 
-const { validate } = require('../utils/api-helpers');
+const { validate } = require('../../utils/api-helpers');
 
 module.exports = (name, id_user) => {
 	return Promise.resolve()

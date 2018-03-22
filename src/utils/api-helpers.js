@@ -25,8 +25,8 @@ function fail(error) {
 /**
  * Validate if data is not empty or undefined
  * 
- * @param {object} data - Object with string or number
- * @throws Will throw an error if the argument is null, empty or undefined.
+ * @param {object} data - Object with values should be string or number
+ * @throws Will throw an error if the some value of object is null, empty or undefined.
  */
 function validate(data) {
 	for (const prop in data) {

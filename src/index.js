@@ -30,6 +30,7 @@ function initAPI(){
 	const app = express();
 
 	app.use(cors());
+
 	app.use('', mainRouter);
 
 	app.use(function(req, res){
@@ -37,6 +38,6 @@ function initAPI(){
 		res.json({ "error": "404", "message": "URL not found" });
 	});
 
-	const port = process.env.PORT
+	const port = process.env.PORT;
 	app.listen(port, () => console.log(`\nAPI running on port: ${port}`));
 }

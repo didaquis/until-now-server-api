@@ -12,3 +12,7 @@ PORT=5000
 #MONGO_DB=your_database
 #MONGO_USER=your-user
 #MONGO_PASS=your-password
+
+# AUTH CONFIG:
+JWT_SECRET=your-secret
+JWT_EXP=1440

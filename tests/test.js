@@ -52,6 +52,19 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
+	it('Should login user', (done) => {
+		logic.loginUser('JohnDoe','JoDo1234*')
+			.then((result) => {
+				expect(mongoose.Types.ObjectId.isValid(result._id)).to.be.true;
+				assertChai.isObject(result);
+				assert.equal(result.toString().charAt(0), '{');
+				assert.equal(result.toString().slice(-1), '}');
+				assert.equal(result.username.toString(), 'JohnDoe');
+				expect(result).not.to.be.empty;
+				done();
+			}).catch(done);
+	});
+
 	it('should create collection', (done) => {
 		logic.createCollection('dummyData', idOfUser)
 			.then(result => {

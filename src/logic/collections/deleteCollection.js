@@ -10,7 +10,7 @@ module.exports = (_id) => {
 			return Collection.findByIdAndRemove({ _id });
 		})
 		.then(results => {
-			if (!results) throw Error('Collection does not exist');
+			if (!results) throw Error('collection does not exist');
 
 			return results;
 		});

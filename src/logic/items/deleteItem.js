@@ -9,7 +9,7 @@ module.exports = (id) => {
 			return Item.findByIdAndRemove(id);
 		})
 		.then(results => {
-			if (!results) throw Error('Item does not exist');
+			if (!results) throw Error('item does not exist');
 			idOfItem = results._id;
 			return decrementItemsCountInCollection(results.id_collection);
 		}).then(() => idOfItem);

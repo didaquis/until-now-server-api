@@ -9,8 +9,7 @@ describe('Testing server API', () => {
 
 	let idOfCollection = '';
 	let idOfItem = '';
-	
-	const idOfUser = '5aa6bb9e341a690ff909faee';
+	let idOfUser = '';
 
 	// Abrimos la conexión con MongoDB (al finalizar los test la cerraremos y borraremos la base de datos)
 	before(function (done) {
@@ -18,7 +17,7 @@ describe('Testing server API', () => {
 		const db = mongoose.connection;
 		db.on('error', console.error.bind(console, '\nconnection error. Are MongoDB server running?\n\n'));
 		db.once('open', function () {
-			console.log('Connected to test database!');
+			console.log('\nConnected to "untilnow_test" database in "localhost"\n');
 			done();
 		});
 	});
@@ -32,6 +31,26 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
+	it('should create new user', (done) => {
+		logic.registerUser('JohnDoe','JoDo1234*')
+			.then(result => {
+				expect(mongoose.Types.ObjectId.isValid(result)).to.be.true;
+				idOfUser = result.toString();
+				done();
+			}).catch(done);
+	});
+
+	it('should retrieve user', (done) => {
+		logic.retrieveUser(idOfUser)
+			.then(result => {
+				expect(mongoose.Types.ObjectId.isValid(result._id)).to.be.true;
+				assertChai.isObject(result);
+				assert.equal(result.toString().charAt(0), '{');
+				assert.equal(result.toString().slice(-1), '}');
+				expect(result).not.to.be.empty;
+				done();
+			}).catch(done);
+	});
 
 	it('should create collection', (done) => {
 		logic.createCollection('dummyData', idOfUser)
@@ -136,6 +155,7 @@ describe('Testing server API', () => {
 	//Cerramos la conexión a la base de datos y borramos la base de datos!
 	after(function (done) {
 		mongoose.connection.db.dropDatabase(function () {
+			console.log('\nDrop database\n');
 			mongoose.connection.close(done);
 		});
 	});

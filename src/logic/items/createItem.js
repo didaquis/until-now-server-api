@@ -18,7 +18,7 @@ module.exports = (name, dateStart, dateEnd, refNumber, notes, id_collection) => 
 
 			return Item.create({ name, dateStart, dateEnd, refNumber, notes, id_collection });
 		}).then(results => {
-			if (!results) throw Error('Item was not created');
+			if (!results) throw Error('item was not created');
 			idOfItem = results._id;
 			return incrementItemsCountInCollection(results.id_collection);
 		}).then(() => idOfItem);

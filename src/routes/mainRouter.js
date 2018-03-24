@@ -6,6 +6,7 @@ const handlerPing = require('./handlersUtils/ping');
 
 // users
 const handlerRetrieveUser = require('./handlersUsers/retrieveUser');
+const handlerRegisterUser = require('./handlersUsers/registerUser');
 
 // collections
 const handlerListCollections = require('./handlersCollections/listCollections');
@@ -27,7 +28,8 @@ const jsonBodyParser = bodyParser.json();
 mainRouter.get('/api/ping', jsonBodyParser, handlerPing);
 
 // users
-mainRouter.post('/api/user', jsonBodyParser, handlerRetrieveUser);
+mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
+mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
 
 // collections
 mainRouter.get('/api/collections', jsonBodyParser, handlerListCollections);

@@ -1,6 +1,6 @@
 {
   "name": "until-now-server-api",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "until-now server api",
   "main": "src/index.js",
   "scripts": {

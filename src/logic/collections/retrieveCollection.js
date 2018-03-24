@@ -5,7 +5,7 @@ module.exports = (id) => {
 		.then(() => {
 			return Collection.findOne({ '_id': id }, { '__v': 0 });
 		}).then(results => {
-			if (!results) throw Error('Collection does not exist');
+			if (!results) throw Error('collection does not exist');
 
 			return results;
 		});

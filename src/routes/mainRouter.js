@@ -3,17 +3,14 @@ const bodyParser = require('body-parser');
 
 // utils
 const handlerPing = require('./handlersUtils/ping');
-
 // users
 const handlerRetrieveUser = require('./handlersUsers/retrieveUser');
-const handlerRegisterUser = require('./handlersUsers/registerUser');
-
+//const handlerRegisterUser = require('./handlersUsers/registerUser');
 // collections
 const handlerListCollections = require('./handlersCollections/listCollections');
 const handlerRetrieveCollection = require('./handlersCollections/retrieveCollection');
 const handlerDeleteCollection = require('./handlersCollections/deleteCollection');
 const handlerCreateCollection = require('./handlersCollections/createCollection');
-
 // items
 const handlerListItems = require('./handlersItems/listItems');
 const handlerRetrieveItem = require('./handlersItems/retrieveItem');
@@ -21,15 +18,17 @@ const handlerDeleteItem = require('./handlersItems/deleteItem');
 const handlerListItemsInCollection = require('./handlersItems/listItemsInCollection');
 const handlerCreateItem = require('./handlersItems/createItem');
 
+
 const mainRouter = Router();
 const jsonBodyParser = bodyParser.json();
+
 
 // util
 mainRouter.get('/api/ping', jsonBodyParser, handlerPing);
 
 // users
 mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
-mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
+//mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
 
 // collections
 mainRouter.get('/api/collections', jsonBodyParser, handlerListCollections);

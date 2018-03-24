@@ -6,7 +6,7 @@ module.exports = () => {
 			return Item.find({}, { '__v': 0 }, {sort: {'dateEnd': 1}});
 		})
 		.then(results => {
-			if (!results) throw Error('No items available');
+			if (!results) throw Error('no items available');
 
 			return results;
 		});

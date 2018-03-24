@@ -5,7 +5,7 @@ module.exports = (id) => {
 		.then(() => {
 			return Collection.findByIdAndUpdate({ '_id': id }, { $set: { 'itemsCount': 0 } }, { new: true });
 		}).then(results => {
-			if (!results) throw Error('Something went wrong setting itemsCount');
+			if (!results) throw Error('something went wrong setting itemsCount');
 
 			return results;
 		});

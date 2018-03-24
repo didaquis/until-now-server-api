@@ -6,7 +6,7 @@ module.exports = () => {
 			return Collection.find({}, { '__v': 0 }).sort({ 'name': 1 });
 		})
 		.then(results => {
-			if (!results) throw Error('No collections available');
+			if (!results) throw Error('no collections available');
 
 			return results;
 		});

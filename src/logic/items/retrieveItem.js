@@ -6,7 +6,7 @@ module.exports = (id) => {
 			return Item.findOne({ '_id': id }, { __v: 0 });
 		})
 		.then(results => {
-			if (!results) throw Error('Item does not exist');
+			if (!results) throw Error('item does not exist');
 
 			return results;
 		});

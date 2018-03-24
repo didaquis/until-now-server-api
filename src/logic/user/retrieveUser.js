@@ -2,15 +2,15 @@ const { User } = require('../../models/userModel');
 
 const { validate } = require('../../utils/api-helpers');
 
-module.exports = (username, password) => {
+module.exports = (id) => {
 	return Promise.resolve()
 		.then(() => {
-			validate({ username, password });
+			validate({ id });
 
-			return User.findOne({ 'username': username, 'password': password }, { password: 0, __v: 0 });
+			return User.findOne({ '_id': id }, { 'password': 0, '__v': 0 });
 		})
 		.then(user => {
-			if (!user) throw Error('User does not exist');
+			if (!user) throw Error('user does not exist');
 
 			return user;
 		});

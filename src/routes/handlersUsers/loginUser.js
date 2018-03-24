@@ -17,8 +17,9 @@ module.exports = (req, res) => {
 			token,
 			username: user.username
 		};
-		return res.json(success(response));
+		res.json(success(response));
 	} catch (err) {
-		return res.json(fail(err.message));
+		//  ************ no entro aquí jamás!! ¿porqué?
+		res.json(fail());
 	}
 };

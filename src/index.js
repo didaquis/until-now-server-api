@@ -5,7 +5,6 @@ const cors = require('cors');
 
 const mongoose = require('mongoose');
 
-const authRouter = require('./routes/authRouter');
 const mainRouter = require('./routes/mainRouter');
 
 const host = process.env.MONGO_HOST;
@@ -32,7 +31,6 @@ function initAPI(){
 
 	app.use(cors());
 
-	app.use('', authRouter);
 	app.use('', mainRouter);
 
 	app.use(function(req, res){

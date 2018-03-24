@@ -1,11 +1,15 @@
 const { Router } = require('express');
 const bodyParser = require('body-parser');
 
+const passport = require('passport');
+require('../configAuth');
+
 // utils
 const handlerPing = require('./handlersUtils/ping');
 // users
 const handlerRetrieveUser = require('./handlersUsers/retrieveUser');
-//const handlerRegisterUser = require('./handlersUsers/registerUser');
+const handlerRegisterUser = require('./handlersUsers/registerUser');
+const handlerLoginUser = require('./handlersUsers/loginUser');
 // collections
 const handlerListCollections = require('./handlersCollections/listCollections');
 const handlerRetrieveCollection = require('./handlersCollections/retrieveCollection');
@@ -22,13 +26,15 @@ const handlerCreateItem = require('./handlersItems/createItem');
 const mainRouter = Router();
 const jsonBodyParser = bodyParser.json();
 
+mainRouter.use(passport.initialize());
 
-// util
+// utils
 mainRouter.get('/api/ping', jsonBodyParser, handlerPing);
 
 // users
+mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
+mainRouter.post('/api/login', [jsonBodyParser, passport.authenticate('local', { session: false })] , handlerLoginUser);
 mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
-//mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
 
 // collections
 mainRouter.get('/api/collections', jsonBodyParser, handlerListCollections);

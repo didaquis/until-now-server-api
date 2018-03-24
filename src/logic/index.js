@@ -21,7 +21,7 @@ const createItem = require('./items/createItem');
 // user logic
 const retrieveUser = require('./user/retrieveUser');
 const registerUser = require('./user/registerUser');
-const validateUser = require('./user/validateUser');
+const loginUser = require('./user/loginUser');
 
 module.exports = {
 	ping,
@@ -40,5 +40,5 @@ module.exports = {
 	createItem,
 	retrieveUser,
 	registerUser,
-	validateUser
+	loginUser
 };

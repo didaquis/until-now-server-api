@@ -1,6 +1,5 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 
 const { JWT_SECRET: secret, JWT_EXP: expiration } = process.env;
@@ -9,7 +8,8 @@ const expiresIn = parseInt(expiration);
 const logic = require('./logic/index');
 
 passport.use(new LocalStrategy((username, password, done) => {
-	logic.validateUser(username, password)
+	// Esta estrategia (local) es usada al tratar de hacer login
+	logic.loginUser(username, password)
 		.then(user => {
 			if (!user) return done(null, false);
 			done(null, user);
@@ -21,8 +21,9 @@ passport.use(new JwtStrategy({
 	secretOrKey: secret,
 	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 }, (payload, done) => {
-	const { username, password } = payload;
-	logic.validateUser(username, password)
+	// Esta estrategia (jwt) se usa para validar que las peticiones vienen con el token de seguridad
+	const { id } = payload;
+	logic.retrieveUser(id)
 		.then(user => {
 			if (!user) return done(null, false);
 			done(null, user);

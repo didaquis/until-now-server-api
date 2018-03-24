@@ -1,8 +1,6 @@
 const { Router } = require('express');
 const bodyParser = require('body-parser');
 
-const passport = require('passport');
-require('../configAuth');
 
 // utils
 const handlerPing = require('./handlersUtils/ping');
@@ -26,6 +24,9 @@ const handlerCreateItem = require('./handlersItems/createItem');
 const mainRouter = Router();
 const jsonBodyParser = bodyParser.json();
 
+// configuración de passport y middlewares de autentificación
+const passport = require('passport');
+require('../configAuth');
 mainRouter.use(passport.initialize());
 
 // utils
@@ -34,6 +35,8 @@ mainRouter.get('/api/ping', jsonBodyParser, handlerPing);
 // users
 mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
 mainRouter.post('/api/login', [jsonBodyParser, passport.authenticate('local', { session: false })] , handlerLoginUser);
+
+mainRouter.use(passport.authenticate('jwt', { session: false })); // Securizamos el resto de rutas
 mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
 
 // collections

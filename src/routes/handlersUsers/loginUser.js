@@ -6,7 +6,7 @@ const expiresIn = parseInt(expiration);
 
 module.exports = (req, res) => {
 	const { user } = req;
-
+	
 	try {
 		const token = jwt.sign({
 			id: user._id,

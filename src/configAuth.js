@@ -2,8 +2,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 
-const { JWT_SECRET: secret, JWT_EXP: expiration } = process.env;
-const expiresIn = parseInt(expiration);
+const { JWT_SECRET: secret } = process.env;
+//const expiresIn = parseInt(expiration);
 
 const logic = require('./logic/index');
 

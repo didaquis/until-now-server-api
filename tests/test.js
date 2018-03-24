@@ -52,8 +52,8 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
-	it('Should validate user', (done) => {
-		logic.validateUser('JohnDoe','JoDo1234*')
+	it('Should login user', (done) => {
+		logic.loginUser('JohnDoe','JoDo1234*')
 			.then((result) => {
 				expect(mongoose.Types.ObjectId.isValid(result._id)).to.be.true;
 				assertChai.isObject(result);

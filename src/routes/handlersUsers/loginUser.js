@@ -19,7 +19,6 @@ module.exports = (req, res) => {
 		};
 		res.json(success(response));
 	} catch (err) {
-		//  ************ no entro aquí jamás!! ¿porqué?
-		res.json(fail());
+		res.json(fail(err.message));
 	}
 };

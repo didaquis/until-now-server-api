@@ -3,7 +3,7 @@ const { success, fail } = require('../../utils/api-helpers');
 
 module.exports = (req, res) => {
 
-	logic.listItems()
+	logic.listItems(id_user)
 		.then(results => {
 			res.json(success(results));
 		})

@@ -75,7 +75,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should return a collection', (done) => {
-		logic.retrieveCollection(idOfCollection)
+		logic.retrieveCollection(idOfCollection, idOfUser)
 			.then(result => {
 				assertChai.isObject(result);
 				assert.equal(result.toString().charAt(0), '{');
@@ -85,8 +85,8 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
-	it('should list collections', (done) => {
-		logic.listCollections()
+	it('should list collections by user', (done) => {
+		logic.listCollectionsFromUser(idOfUser)
 			.then(result => {
 				assert(result && result instanceof Array, 'results should be an Array');
 				done();
@@ -94,7 +94,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should list items', (done) => {
-		logic.listItems()
+		logic.listItems(idOfUser)
 			.then(result => {
 				assert(result && result instanceof Array, 'results should be an Array');
 				done();
@@ -102,7 +102,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should list items in collection', (done) => {
-		logic.listItemsInCollection(idOfCollection)
+		logic.listItemsInCollection(idOfCollection, idOfUser)
 			.then(result => {
 				assert(result && result instanceof Array, 'results should be an Array');
 				done();
@@ -126,7 +126,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should create item', (done) => {
-		logic.createItem('dummyData', '2018-01-01', '2018-12-31', 'abc', 'my notes', idOfCollection)
+		logic.createItem('dummyData', '2018-01-01', '2018-12-31', 'abc', 'my notes', idOfCollection, idOfUser)
 			.then(result => {
 				expect(mongoose.Types.ObjectId.isValid(result)).to.be.true;
 				idOfItem = result.toString();

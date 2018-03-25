@@ -9,7 +9,6 @@ const handlerRetrieveUser = require('./handlersUsers/retrieveUser');
 const handlerRegisterUser = require('./handlersUsers/registerUser');
 const handlerLoginUser = require('./handlersUsers/loginUser');
 // collections
-const handlerListCollections = require('./handlersCollections/listCollections');
 const handlerListCollectionsFromUser = require('./handlersCollections/listCollectionsFromUser');
 const handlerRetrieveCollection = require('./handlersCollections/retrieveCollection');
 const handlerDeleteCollection = require('./handlersCollections/deleteCollection');
@@ -41,8 +40,7 @@ mainRouter.use(passport.authenticate('jwt', { session: false })); // Securizamos
 mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
 
 // collections
-mainRouter.get('/api/collections', jsonBodyParser, handlerListCollections);
-mainRouter.get('/api/collections-user', jsonBodyParser, handlerListCollectionsFromUser);
+mainRouter.get('/api/collections', jsonBodyParser, handlerListCollectionsFromUser);
 mainRouter.get('/api/collection/:id', jsonBodyParser, handlerRetrieveCollection);
 mainRouter.delete('/api/collection/:id', jsonBodyParser, handlerDeleteCollection);
 mainRouter.post('/api/collection/', jsonBodyParser, handlerCreateCollection);

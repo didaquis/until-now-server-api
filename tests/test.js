@@ -85,14 +85,6 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
-	it('should list collections', (done) => {
-		logic.listCollections()
-			.then(result => {
-				assert(result && result instanceof Array, 'results should be an Array');
-				done();
-			}).catch(done);
-	});
-
 	it('should list collections by user', (done) => {
 		logic.listCollectionsFromUser(idOfUser)
 			.then(result => {

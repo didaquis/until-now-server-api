@@ -2,23 +2,28 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
-    name: { 
+	name: {
 		type: String,
 		required: true
 	},
-    dateStart: { 
+	dateStart: {
 		type: Date,
 		required: true
 	},
-	dateEnd: { 
+	dateEnd: {
 		type: Date,
 		required: true
 	},
 	refNumber: String,
 	notes: String,
-	id_collection		: {
+	id_collection: {
 		type: mongoose.SchemaTypes.ObjectId,
 		ref: 'Collection',
+		required: true
+	},
+	id_user: {
+		type: mongoose.SchemaTypes.ObjectId,
+		ref: 'User',
 		required: true
 	}
 });

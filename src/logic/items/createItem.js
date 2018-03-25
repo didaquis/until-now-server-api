@@ -3,11 +3,11 @@ const { Item } = require('../../models/itemModel');
 const incrementItemsCountInCollection = require('../collections/incrementItemsCountInCollection');
 const { validate } = require('../../utils/api-helpers');
 
-module.exports = (name, dateStart, dateEnd, refNumber, notes, id_collection) => {
+module.exports = (name, dateStart, dateEnd, refNumber, notes, id_collection, id_user) => {
 	let idOfItem = '';
 	return Promise.resolve()
 		.then(() => {
-			validate({ name, dateStart, dateEnd, id_collection });
+			validate({ name, dateStart, dateEnd, id_collection, id_user });
 
 			name = name.trim();
 			dateStart = dateStart.trim();
@@ -16,7 +16,7 @@ module.exports = (name, dateStart, dateEnd, refNumber, notes, id_collection) => 
 			notes = notes.trim();
 			id_collection = id_collection.trim();
 
-			return Item.create({ name, dateStart, dateEnd, refNumber, notes, id_collection });
+			return Item.create({ name, dateStart, dateEnd, refNumber, notes, id_collection, id_user });
 		}).then(results => {
 			if (!results) throw Error('item was not created');
 			idOfItem = results._id;

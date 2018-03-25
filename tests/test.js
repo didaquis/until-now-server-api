@@ -134,7 +134,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should create item', (done) => {
-		logic.createItem('dummyData', '2018-01-01', '2018-12-31', 'abc', 'my notes', idOfCollection)
+		logic.createItem('dummyData', '2018-01-01', '2018-12-31', 'abc', 'my notes', idOfCollection, idOfUser)
 			.then(result => {
 				expect(mongoose.Types.ObjectId.isValid(result)).to.be.true;
 				idOfItem = result.toString();

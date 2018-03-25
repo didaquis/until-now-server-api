@@ -86,7 +86,7 @@ describe('Testing server API', () => {
 	});
 
 	it('should list collections by user', (done) => {
-		logic.listCollectionsFromUser(idOfUser)
+		logic.listCollections(idOfUser)
 			.then(result => {
 				assert(result && result instanceof Array, 'results should be an Array');
 				done();

@@ -41,15 +41,15 @@ mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
 
 // collections
 mainRouter.get('/api/collections', jsonBodyParser, handlerListCollectionsFromUser);
-mainRouter.get('/api/collection/:id', jsonBodyParser, handlerRetrieveCollection);
+mainRouter.get('/api/collection/:id/:id_user', jsonBodyParser, handlerRetrieveCollection);
 mainRouter.delete('/api/collection/:id', jsonBodyParser, handlerDeleteCollection);
 mainRouter.post('/api/collection/', jsonBodyParser, handlerCreateCollection);
 
 // items
-mainRouter.get('/api/items', jsonBodyParser, handlerListItems);
+mainRouter.get('/api/items/:id_user', jsonBodyParser, handlerListItems);
 mainRouter.get('/api/item/:id', jsonBodyParser, handlerRetrieveItem);
 mainRouter.delete('/api/item/:id', jsonBodyParser, handlerDeleteItem);
-mainRouter.get('/api/items/:id', jsonBodyParser, handlerListItemsInCollection);
+mainRouter.get('/api/items/:id/:id_user', jsonBodyParser, handlerListItemsInCollection);
 mainRouter.post('/api/item/', jsonBodyParser, handlerCreateItem);
 
 module.exports = mainRouter;

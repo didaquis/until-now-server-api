@@ -2,7 +2,7 @@
 const ping = require('./utils/ping');
 
 // collection logic
-const listCollections = require('./collections/listCollections');
+const listCollectionsFromUser = require('./collections/listCollectionsFromUser');
 const retrieveCollection = require('./collections/retrieveCollection');
 const setToZeroItemsCountInCollection = require('./collections/setToZeroItemsCountInCollection');
 const incrementItemsCountInCollection = require('./collections/incrementItemsCountInCollection');
@@ -25,7 +25,7 @@ const loginUser = require('./user/loginUser');
 
 module.exports = {
 	ping,
-	listCollections,
+	listCollectionsFromUser,
 	retrieveCollection,
 	setToZeroItemsCountInCollection,
 	incrementItemsCountInCollection,

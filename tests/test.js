@@ -42,7 +42,7 @@ describe('Testing server API', () => {
 
 	it('should not create a new user', async () => {
 		try {
-			await logic.registerUser('JohnDoe', 'JoDo1234*')
+			await logic.registerUser('JohnDoe', 'JoDo1234*');
 		} catch (e) {
 			expect(e).to.instanceof(Error);
 		}
@@ -62,7 +62,7 @@ describe('Testing server API', () => {
 
 	it('should not retrieve user', async () => {
 		try {
-			await logic.retrieveUser('000')
+			await logic.retrieveUser('000');
 		} catch (e) {
 			expect(e).to.instanceof(Error);
 		}
@@ -83,7 +83,7 @@ describe('Testing server API', () => {
 
 	it('Should not be a valid login', async () => {
 		try {
-			await logic.loginUser('---', '---')
+			await logic.loginUser('---', '---');
 		} catch (e) {
 			expect(e).to.instanceof(Error);
 		}

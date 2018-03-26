@@ -32,12 +32,20 @@ describe('Testing server API', () => {
 	});
 
 	it('should create new user', (done) => {
-		logic.registerUser('JohnDoe','JoDo1234*')
+		logic.registerUser('JohnDoe', 'JoDo1234*')
 			.then(result => {
 				expect(mongoose.Types.ObjectId.isValid(result)).to.be.true;
 				idOfUser = result.toString();
 				done();
 			}).catch(done);
+	});
+
+	it('should not create a new user', async () => {
+		try {
+			await logic.registerUser('JohnDoe', 'JoDo1234*');
+		} catch (e) {
+			expect(e).to.instanceof(Error);
+		}
 	});
 
 	it('should retrieve user', (done) => {
@@ -52,8 +60,16 @@ describe('Testing server API', () => {
 			}).catch(done);
 	});
 
+	it('should not retrieve user', async () => {
+		try {
+			await logic.retrieveUser('000');
+		} catch (e) {
+			expect(e).to.instanceof(Error);
+		}
+	});
+
 	it('Should login user', (done) => {
-		logic.loginUser('JohnDoe','JoDo1234*')
+		logic.loginUser('JohnDoe', 'JoDo1234*')
 			.then((result) => {
 				expect(mongoose.Types.ObjectId.isValid(result._id)).to.be.true;
 				assertChai.isObject(result);
@@ -63,6 +79,14 @@ describe('Testing server API', () => {
 				expect(result).not.to.be.empty;
 				done();
 			}).catch(done);
+	});
+
+	it('Should not be a valid login', async () => {
+		try {
+			await logic.loginUser('---', '---');
+		} catch (e) {
+			expect(e).to.instanceof(Error);
+		}
 	});
 
 	it('should create collection', (done) => {
@@ -196,6 +220,17 @@ describe('Testing API utils', () => {
 		assert.equal(JSON.stringify(result).charAt(0), '{');
 		assert.equal(JSON.stringify(result).slice(-1), '}');
 		expect(JSON.stringify(result).search(/OK/)).to.be.gt(-1);
+		expect(JSON.stringify(result.data).search(/dummydata/)).to.be.gt(-1);
+		expect(result).not.to.be.empty;
+	});
+
+	it('should return success object without data', () => {
+		const result = success();
+		assertChai.isObject(result);
+		assert.equal(JSON.stringify(result).charAt(0), '{');
+		assert.equal(JSON.stringify(result).slice(-1), '}');
+		expect(JSON.stringify(result).search(/OK/)).to.be.gt(-1);
+		expect(JSON.stringify(result.data)).to.be.undefined;
 		expect(result).not.to.be.empty;
 	});
 
@@ -205,11 +240,22 @@ describe('Testing API utils', () => {
 		assert.equal(JSON.stringify(result).charAt(0), '{');
 		assert.equal(JSON.stringify(result).slice(-1), '}');
 		expect(JSON.stringify(result).search(/ERROR/)).to.be.gt(-1);
+		expect(JSON.stringify(result.error).search(/dummydata/)).to.be.gt(-1);
+		expect(result).not.to.be.empty;
+	});
+	
+	it('should return fail object withou data', () => {
+		const result = fail();
+		assertChai.isObject(result);
+		assert.equal(JSON.stringify(result).charAt(0), '{');
+		assert.equal(JSON.stringify(result).slice(-1), '}');
+		expect(JSON.stringify(result).search(/ERROR/)).to.be.gt(-1);
+		expect(JSON.stringify(result.error)).to.be.undefined;
 		expect(result).not.to.be.empty;
 	});
 
 	it('should throw error for value undefined', () => {
-		expect(() => { validate({undefined}); }).to.throw();
+		expect(() => { validate({ undefined }); }).to.throw();
 	});
 
 	it('should throw error for not secure passwords', () => {

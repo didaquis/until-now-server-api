@@ -19,3 +19,9 @@ Enlaces relacionados:
 Para hacer funcionar la aplicación, debes renombrar el fichero `_env` por `.env` y configurar las variables para la correcta utilización de la API y/o el TDD. 
 
 También deberás instalar las dependencias. Antes de desplegar una nueva actualización, ejecuta los test (en el fichero `package.json` hay definido un script para tal fin).  
+
+## Test & Test Coverage
+
+![Test](docs/test_api_server.png)  
+
+![Test Coverage](docs/coverage_api_server.png)  

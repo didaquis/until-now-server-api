@@ -1,4 +1,4 @@
-const { User } = require('../../models/userModel');
+const { User } = require('../../models/index');
 
 const { validate, sha256 } = require('../../utils/api-helpers');
 

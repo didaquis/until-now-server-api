@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CollectionSchema = new Schema({
+module.exports = new Schema({
 	name: { 
 		type: String,
 		required: true
@@ -17,5 +17,3 @@ const CollectionSchema = new Schema({
 		required: true
 	}
 });
-
-module.exports.Collection = mongoose.model('Collection', CollectionSchema);

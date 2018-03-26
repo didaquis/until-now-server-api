@@ -1,4 +1,4 @@
-const { Collection } = require('../../models/collectionModel');
+const { Collection } = require('../../models/index');
 
 const deleteItemsFromCollection = require('../items/deleteItemsFromCollection');
 

@@ -6,26 +6,28 @@ const { JWT_SECRET: secret } = process.env;
 
 const logic = require('./logic/index');
 
-passport.use(new LocalStrategy((username, password, done) => {
+passport.use(new LocalStrategy((username, password, next) => {
 	// Esta estrategia (local) es usada al tratar de hacer login
 	logic.loginUser(username, password)
 		.then(user => {
-			if (!user) return done(null, false);
-			done(null, user);
+			if (!user) return next(null, false);
+			next(null, user);
 		})
-		.catch(done);
+		.catch(() => {
+			next(null, false);
+		});
 }));
 
 passport.use(new JwtStrategy({
 	secretOrKey: secret,
 	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
-}, (payload, done) => {
+}, (payload, next) => {
 	// Esta estrategia (jwt) se usa para validar que las peticiones vienen con el token de seguridad
 	const { id } = payload;
 	logic.retrieveUser(id)
 		.then(user => {
-			if (!user) return done(null, false);
-			done(null, user);
+			if (!user) return next(null, false);
+			next(null, user);
 		})
-		.catch(done);
+		.catch(next);
 }));

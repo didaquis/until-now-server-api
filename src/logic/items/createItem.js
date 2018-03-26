@@ -1,4 +1,4 @@
-const { Item } = require('../../models/itemModel');
+const { Item } = require('../../models/index');
 
 const incrementItemsCountInCollection = require('../collections/incrementItemsCountInCollection');
 const { validate } = require('../../utils/api-helpers');

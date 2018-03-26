@@ -35,7 +35,7 @@ function initAPI(){
 
 	app.use(function(req, res){
 		res.status(404);
-		res.json({ "error": "404", "message": "URL not found" });
+		res.json({ 'error': '404', 'message': 'URL not found' });
 	});
 
 	const port = process.env.PORT;

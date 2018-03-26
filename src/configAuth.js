@@ -13,7 +13,9 @@ passport.use(new LocalStrategy((username, password, done) => {
 			if (!user) return done(null, false);
 			done(null, user);
 		})
-		.catch(done);
+		.catch(() => {
+			done(null, false);
+		});
 }));
 
 passport.use(new JwtStrategy({

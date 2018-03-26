@@ -1,4 +1,4 @@
-const { success, fail } = require('../../utils/api-helpers');
+const { success } = require('../../utils/api-helpers');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET: secret, JWT_EXP: expiration } = process.env;
 const expiresIn = parseInt(expiration);

@@ -37,6 +37,7 @@ mainRouter.post('/api/user', jsonBodyParser, handlerRegisterUser);
 mainRouter.post('/api/login', [jsonBodyParser, passport.authenticate('local', { session: false })] , handlerLoginUser);
 
 mainRouter.use(passport.authenticate('jwt', { session: false })); // Securizamos el resto de rutas
+
 mainRouter.get('/api/user/:id', jsonBodyParser, handlerRetrieveUser);
 
 // collections

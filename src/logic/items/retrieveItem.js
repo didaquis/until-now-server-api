@@ -1,4 +1,4 @@
-const { Item } = require('../../models/itemModel');
+const { Item } = require('../../models/index');
 
 module.exports = (id) => {
 	return Promise.resolve()

@@ -8,7 +8,6 @@ module.exports = (name, id_user) => {
 			validate({ name, id_user });
 
 			name = name.trim();
-			id_user = id_user.trim();
 
 			return Collection.create({ name, id_user });
 		}).then(res => {

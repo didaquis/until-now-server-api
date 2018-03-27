@@ -2,7 +2,6 @@ const crypto = require('crypto');
 
 /**
  * Generate a response text (successful)
- * 
  * @param {string} [data] - Data to send in response 
  */
 function success(data) {
@@ -13,7 +12,6 @@ function success(data) {
 
 /**
  * Generate a response text (failed)
- * 
  * @param {string} [error] - Error information to send in response 
  */
 function fail(error) {
@@ -24,7 +22,6 @@ function fail(error) {
 
 /**
  * Validate if data is not empty or undefined
- * 
  * @param {object} data - Object with values should be string or number
  * @throws Will throw an error if the some value of object is null, empty or undefined.
  */
@@ -48,7 +45,6 @@ function sha256(text){
 
 /**
  * Check if password have numbers, minus chars, mayús chars and at least a length of 8. These symbols are valid: ! * ^ ? + - _ @ # $ % & 
- * 
  * @param  {String} password
  * @throws Will throw an error if password providad not pass the check
  */

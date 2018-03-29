@@ -1,8 +1,9 @@
 # Until Now 
 En algunas actividades, como en el submarinismo o la escalada, se utilza material técnico especializado y diseñado únicamente para tal fin. Los fabricantes de dicho material establecen una duración máxima de uso para estos productos. Exceder la vida útil de los elementos usados en actividades de riesgo puede tener consecuencias letales.
 
-Until Now te ayuda a gestionar la fecha de renovación del material técnico. La aplicación te permite visualizar rápidamente que material debes descartar y/o renovar próximamente.
+Until Now te ayuda a gestionar la fecha de renovación del material técnico. La aplicación te permite visualizar rápidamente que material debes descartar y/o renovar próximamente.  
 
+[Slides presentación](https://docs.google.com/presentation/d/1wR7b1NG2EA7UwatwS05HfbMU5Qd-fRm0PDvkmQIIeW0/edit?usp=sharing)  
 
 ## Until-Now (server API) 
 Esta API provee métodos para interactuar con la capa de datos, la cual está situada en base de datos no referenciada en este repositorio.  
@@ -16,7 +17,7 @@ Enlaces relacionados:
 * [Until Now client API](https://github.com/didaquis/until-now-client-api) 
 * [Until Now server API](https://github.com/didaquis/until-now-server-api) 
 
-Para hacer funcionar la aplicación, debes renombrar el fichero `_env` por `.env` y configurar las variables para la correcta utilización de la API y/o el TDD. 
+Para hacer funcionar la aplicación, debes renombrar el fichero `_env` por `.env` y configurar las variables para la correcta utilización de la API y/o el TDD. Debes proveer los datos de conexión con el servidor de la base de datos.  
 
 También deberás instalar las dependencias. Antes de desplegar una nueva actualización, ejecuta los test (en el fichero `package.json` hay definido un script para tal fin).  
 

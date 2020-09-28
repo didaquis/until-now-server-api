@@ -5,7 +5,7 @@ const setToZeroItemsCountInCollection = require('../collections/setToZeroItemsCo
 module.exports = (id) => {
 	return Promise.resolve()
 		.then(() => {
-			return Item.remove({ 'id_collection': id });
+			return Item.deleteMany({ 'id_collection': id });
 		})
 		.then(results => {
 			if (!results) throw Error('something went wrong');

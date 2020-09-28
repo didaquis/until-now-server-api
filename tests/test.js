@@ -5,6 +5,8 @@ const assert = require('assert');
 const expect = require('chai').expect;
 const assertChai = require('chai').assert;
 
+const mongooseConnectOptions = { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false };
+
 describe('Testing server API', () => {
 
 	let idOfCollection = '';
@@ -13,7 +15,7 @@ describe('Testing server API', () => {
 
 	// Abrimos la conexión con MongoDB (al finalizar los test la cerraremos y borraremos la base de datos)
 	before(function (done) {
-		mongoose.connect('mongodb://localhost/untilnow_test');
+		mongoose.connect('mongodb://localhost/untilnow_test', mongooseConnectOptions);
 		const db = mongoose.connection;
 		db.on('error', console.error.bind(console, '\nconnection error. Are MongoDB server running?\n\n'));
 		db.once('open', function () {
